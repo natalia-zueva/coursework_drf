@@ -6,7 +6,9 @@ from users.serializers import UserSerializer
 
 
 class UserCreateAPIView(generics.CreateAPIView):
-    """Представление для создания пользователей"""
+    """
+    Контроллер для создания пользователей
+    """
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
@@ -20,4 +22,3 @@ class UserCreateAPIView(generics.CreateAPIView):
         else:
             data = serializer.errors
             return Response(data)
-
