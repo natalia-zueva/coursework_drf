@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -44,6 +45,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_yasg',
+    'corsheaders',
+    'django_celery_beat',
 
     'users',
     'habits',
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -145,3 +150,31 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',
+    ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    ]
+
+# Celery settings
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_TIMEZONE = "Asia/Yekaterinburg"
+
+# CELERY_BEAT_SCHEDULE = {
+#     'task-name': {
+#         'task': 'habit.tasks.send_reminder_about_habit',
+#         'schedule': timedelta(minutes=1)
+#     }
+# }
+
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
