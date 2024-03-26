@@ -15,6 +15,8 @@ def send_reminder_about_habit():
     URL = "https://api.telegram.org/bot"
     TOKEN = settings.TELEGRAM_TOKEN
 
+    print("Send message")
+
     time_now = datetime.now().time()
     data_now = datetime.now().date()
     habits_to_send = Habit.objects.filter(time=time_now, date=data_now)

@@ -170,11 +170,11 @@ CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 CELERY_TIMEZONE = "Asia/Yekaterinburg"
 
-# CELERY_BEAT_SCHEDULE = {
-#     'task-name': {
-#         'task': 'habit.tasks.send_reminder_about_habit',
-#         'schedule': timedelta(minutes=1)
-#     }
-# }
+CELERY_BEAT_SCHEDULE = {
+    'task-name': {
+        'task': 'habits.tasks.send_reminder_about_habit',
+        'schedule': timedelta(minutes=1)
+    }
+}
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
