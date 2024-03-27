@@ -122,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yekaterinburg'
 
 USE_I18N = True
 
@@ -173,7 +173,7 @@ CELERY_TIMEZONE = "Asia/Yekaterinburg"
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
         'task': 'habits.tasks.send_reminder_about_habit',
-        'schedule': timedelta(minutes=1)
+        'schedule': timedelta(hours=1)
     }
 }
 

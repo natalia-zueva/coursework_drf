@@ -17,4 +17,3 @@ class HabitSerializer(serializers.ModelSerializer):
             HabitTimeDurationValidator(field='duration'),
             CheckHabitValidator(field='periodicity')
         ]
-

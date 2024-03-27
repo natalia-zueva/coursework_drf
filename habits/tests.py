@@ -23,7 +23,7 @@ class HabitTestCase(APITestCase):
             place='test_place',
             action='test_action',
             owner=self.user
-    )
+        )
 
     def test_create_habit(self):
         """Тестирование создания привычек"""
@@ -42,15 +42,6 @@ class HabitTestCase(APITestCase):
     def test_list_habit(self):
         """Тестирование вывода списка привычек"""
 
-        data = {
-            'result': [
-                {
-                    'place': 'test_place',
-                    'action': 'test_action',
-                    'owner': self.user.pk
-                }
-            ]
-        }
         response = self.client.get('/habits/')
 
         self.assertEquals(response.status_code, status.HTTP_200_OK)
