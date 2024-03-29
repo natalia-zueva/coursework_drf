@@ -20,9 +20,13 @@ class HabitListAPIView(generics.ListAPIView):
     Контроллер для вывода списка привычек
     """
     serializer_class = HabitSerializer
-    queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
     pagination_class = HabitPaginator
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Habit.objects.filter(owner=user)
+        return queryset
 
 
 class HabitRetrieveAPIView(generics.RetrieveAPIView):

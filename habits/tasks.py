@@ -18,7 +18,7 @@ def send_reminder_about_habit():
 
     time_now = datetime.now().time().replace(second=0, microsecond=0)
     date_now = date.today()
-    habits_to_send = Habit.objects.filter(is_pleasent=False)
+    habits_to_send = Habit.objects.filter(is_pleasant=False)
 
     for habit in habits_to_send:
         if habit.date == date_now or not habit.date:
