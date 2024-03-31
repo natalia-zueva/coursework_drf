@@ -22,3 +22,26 @@ class UserCreateAPIView(generics.CreateAPIView):
         else:
             data = serializer.errors
             return Response(data)
+
+    def perform_create(self, request, *args, **kwargs):
+        data = request.data
+        password = data.get('password')
+        user = User.object.get(email=data.get('email'))
+        user.set_password(password)
+        user.save()
+
+
+class UserUpdateAPIView(generics.UpdateAPIView):
+    """
+    Контроллер для изменения пользователя
+    """
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+
+class UserRetrieveAPIView(generics.RetrieveAPIView):
+    """
+    Контроллер для просмотра пользователя
+    """
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
