@@ -91,9 +91,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD')
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
@@ -173,7 +175,7 @@ CELERY_TIMEZONE = "Asia/Yekaterinburg"
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
         'task': 'habits.tasks.send_reminder_about_habit',
-        'schedule': timedelta(minutes=1)
+        'schedule': timedelta(days=1)
     }
 }
 
